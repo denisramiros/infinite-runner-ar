@@ -13,6 +13,7 @@ namespace Resources.Scripts
         public Text countdownText;
         public Text pausedText;
         public Text gameOverText;
+        public Text scoreText;
 
         public int countdownTime;
         
@@ -23,6 +24,7 @@ namespace Resources.Scripts
             pausedText.enabled = false;
             countdownText.enabled = false;
             gameOverText.enabled = false;
+            scoreText.enabled = false;
         }
 
         public void SetGameReady()
@@ -39,6 +41,7 @@ namespace Resources.Scripts
             startText.enabled = false;
             pausedText.enabled = false;
             countdownText.enabled = true;
+            scoreText.enabled = true;
             StartCoroutine(StartCountdown());
         }
 
@@ -57,6 +60,11 @@ namespace Resources.Scripts
             pausedText.enabled = false;
             countdownText.enabled = false;
             gameOverText.enabled = true;
+        }
+
+        public void SetScore(float score)
+        {
+            scoreText.text = "Score: " + score.ToString("F2");
         }
 
         private IEnumerator StartCountdown()
