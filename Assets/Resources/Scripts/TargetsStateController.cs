@@ -1,45 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TargetsStateController : MonoBehaviour
+namespace Resources.Scripts
 {
-    private bool isPlayerFound;
-    private bool isRoadFound;
-
-    // Start is called before the first frame update
-    void Start()
+    public class TargetsStateController : MonoBehaviour
     {
-        
-    }
+        private bool _isPlayerFound;
+        private bool _isRoadFound;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        public void OnPlayerFound()
+        {
+            _isPlayerFound = true;
+        }
 
-    public void OnPlayerFound()
-    {
-        isPlayerFound = true;
-    }
+        public void OnPlayerLost()
+        {
+            _isPlayerFound = false;
+        }
 
-    public void OnPlayerLost()
-    {
-        isPlayerFound = false;
-    }
+        public void OnRoadFound()
+        {
+            _isRoadFound = true;
+        }
 
-    public void OnRoadFound()
-    {
-        isRoadFound = true;
-    }
+        public void OnRoadLost()
+        {
+            _isRoadFound = false;
+        }
 
-    public void OnRoadLost()
-    {
-        isRoadFound = false;
-    }
-
-    public bool TargetsFound()
-    {
-        return isPlayerFound && isRoadFound;
+        public bool TargetsFound()
+        {
+            return _isPlayerFound && _isRoadFound;
+        }
     }
 }
