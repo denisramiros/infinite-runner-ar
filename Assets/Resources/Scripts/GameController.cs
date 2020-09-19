@@ -12,6 +12,14 @@ namespace Resources.Scripts
         public bool IsGamePaused { get; set; }
         public bool IsGameOver { get; set; }
 
+        private AudioSource audioSource;
+
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+
         private void Update()
         {
             HandleGameState();
@@ -22,6 +30,7 @@ namespace Resources.Scripts
             Debug.Log("StartGame");
             IsGameStarted = true;
             Time.timeScale = 1;
+            audioSource.Play();
         }
 
         public void GameOver()
@@ -53,6 +62,7 @@ namespace Resources.Scripts
                 IsGamePaused = true;
                 textController.SetGamePause();
                 Time.timeScale = 0;
+                audioSource.Pause();
             }
 
             if (IsGamePaused && targetsStateController.TargetsFound() &&
@@ -61,6 +71,7 @@ namespace Resources.Scripts
                 Debug.Log("UnPauseGame");
                 IsGamePaused = false;
                 textController.SetGameStart();
+                audioSource.UnPause();
             }
         }
 
