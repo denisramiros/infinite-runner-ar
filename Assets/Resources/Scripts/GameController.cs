@@ -5,7 +5,7 @@ namespace Resources.Scripts
     public class GameController : MonoBehaviour
     {
         public TargetsStateController targetsStateController;
-        public TextController textController;
+        public MenuController textController;
 
         public bool IsGameReady { get; set; }
         public bool IsGameStarted { get; set; }

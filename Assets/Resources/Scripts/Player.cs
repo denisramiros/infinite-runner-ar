@@ -9,7 +9,7 @@ namespace Resources.Scripts
         private GameController gameController;
 
         [SerializeField]
-        private TextController textController;
+        private MenuController textController;
 
         private float score;
 
