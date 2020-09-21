@@ -35,11 +35,9 @@ namespace Resources.Scripts
 
         public void GameOver()
         {
-            IsGamePaused = false;
-            IsGameReady = false;
-            IsGameStarted = false;
             IsGameOver = true;
             Time.timeScale = 0;
+            textController.SetGameOver();
         }
 
         private void HandleGameState()
