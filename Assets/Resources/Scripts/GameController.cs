@@ -13,6 +13,7 @@ namespace Resources.Scripts
         public bool IsGameOver { get; set; }
 
         private AudioSource audioSource;
+        
 
         private void Start()
         {
@@ -31,6 +32,7 @@ namespace Resources.Scripts
             IsGameStarted = true;
             Time.timeScale = 1;
             audioSource.Play();
+            
         }
 
         public void GameOver()

@@ -28,9 +28,9 @@ namespace Resources.Scripts
         [Header("Game over")]
         public GameObject gameOverPanel;
         public Text gameOverScoreText;
-
-
+        
         float score;
+
 
         private void Start()
         {
