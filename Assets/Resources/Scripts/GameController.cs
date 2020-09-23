@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Resources.Scripts
 {
@@ -13,17 +14,12 @@ namespace Resources.Scripts
         public bool IsGameOver { get; set; }
 
         private AudioSource audioSource;
-        
+
 
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
-        }
-
-
-        private void Update()
-        {
-            HandleGameState();
+            StartCoroutine(HandleGameState());
         }
 
         public void StartGame()
@@ -32,7 +28,7 @@ namespace Resources.Scripts
             IsGameStarted = true;
             Time.timeScale = 1;
             audioSource.Play();
-            
+
         }
 
         public void GameOver()
@@ -41,7 +37,7 @@ namespace Resources.Scripts
             Time.timeScale = 0;
             textController.SetGameOver();
         }
-        
+
         public void Pause()
         {
             IsGamePaused = true;
@@ -49,7 +45,7 @@ namespace Resources.Scripts
             audioSource.Pause();
             textController.SetGamePause();
         }
-        
+
         public void UnPause()
         {
             IsGamePaused = false;
@@ -58,36 +54,41 @@ namespace Resources.Scripts
             textController.SetGameStart();
         }
 
-        private void HandleGameState()
+        IEnumerator HandleGameState()
         {
-            if (!IsGameStarted && !IsGameReady && targetsStateController.TargetsFound())
+            while (true)
             {
-                Debug.Log("ReadyGame");
-                IsGameReady = true;
-                textController.SetGameReady();
-            }
+                if (!IsGameStarted && !IsGameReady && targetsStateController.TargetsFound())
+                {
+                    Debug.Log("ReadyGame");
+                    IsGameReady = true;
+                    textController.SetGameReady();
+                }
 
-            if (IsGameReady && !IsGameStarted && (Input.touchCount >= 1 || Input.GetMouseButtonDown(0)))
-            {
-                textController.SetGameStart();
-            }
+                if (IsGameReady && !IsGameStarted && (Input.touchCount >= 1 || Input.GetMouseButtonDown(0)))
+                {
+                    textController.SetGameStart();
+                }
 
-            if (IsGameStarted && !IsGamePaused && !targetsStateController.TargetsFound())
-            {
-                Debug.Log("PauseGame");
-                IsGamePaused = true;
-                textController.SetGamePause();
-                Time.timeScale = 0;
-                audioSource.Pause();
-            }
+                if (IsGameStarted && !IsGamePaused && !targetsStateController.TargetsFound())
+                {
+                    Debug.Log("PauseGame");
+                    IsGamePaused = true;
+                    textController.SetGamePause();
+                    Time.timeScale = 0;
+                    audioSource.Pause();
+                }
 
-            if (IsGamePaused && targetsStateController.TargetsFound() &&
-                (Input.touchCount >= 1 || Input.GetMouseButtonDown(0)))
-            {
-                Debug.Log("UnPauseGame");
-                IsGamePaused = false;
-                textController.SetGameStart();
-                audioSource.UnPause();
+                if (IsGamePaused && targetsStateController.TargetsFound() &&
+                    (Input.touchCount >= 1 || Input.GetMouseButtonDown(0)))
+                {
+                    Debug.Log("UnPauseGame");
+                    IsGamePaused = false;
+                    textController.SetGameStart();
+                    audioSource.UnPause();
+                }
+
+                yield return new WaitForSecondsRealtime(0.1f);
             }
         }
 

@@ -28,7 +28,7 @@ namespace Resources.Scripts
         [Header("Game over")]
         public GameObject gameOverPanel;
         public Text gameOverScoreText;
-        
+
         float score;
 
 
@@ -93,7 +93,7 @@ namespace Resources.Scripts
                 countdown--;
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
 
             gameController.StartGame();
             countdownText.gameObject.SetActive(false);
