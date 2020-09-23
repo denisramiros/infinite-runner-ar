@@ -52,6 +52,20 @@ namespace Resources.Scripts
                 animator.SetBool(runHash, false);
                 gameController.GameOver();
             }
+            else if (other.gameObject.CompareTag("PlayArea"))
+            {
+                animator.SetBool(runHash, true);
+                gameController.UnPause();
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("PlayArea"))
+            {
+                animator.SetBool(runHash, false);
+                gameController.Pause();
+            }
         }
     }
 }

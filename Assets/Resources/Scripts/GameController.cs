@@ -41,6 +41,22 @@ namespace Resources.Scripts
             Time.timeScale = 0;
             textController.SetGameOver();
         }
+        
+        public void Pause()
+        {
+            IsGamePaused = true;
+            Time.timeScale = 0;
+            audioSource.Pause();
+            textController.SetGamePause();
+        }
+        
+        public void UnPause()
+        {
+            IsGamePaused = false;
+            Time.timeScale = 1;
+            audioSource.UnPause();
+            textController.SetGameStart();
+        }
 
         private void HandleGameState()
         {
