@@ -95,8 +95,9 @@ namespace Resources.Scripts
 
             yield return new WaitForSeconds(1f);
 
-            gameController.StartGame();
             countdownText.gameObject.SetActive(false);
+            gameController.StartGame();
+           
         }
     }
 }
