@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1725289780871688127}
   - component: {fileID: 1521546466692505340}
   - component: {fileID: -5335280667898410247}
+  - component: {fileID: 4982027505404750385}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Collectible
@@ -109,3 +110,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5083126, y: 1.1244249, z: 1.9387603}
   m_Center: {x: 0, y: 0.5622122, z: -0.000000029802322}
+--- !u!54 &4982027505404750385
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725289780869427583}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
